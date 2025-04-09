@@ -8,6 +8,4 @@ def home(request):
     # Send a simple HTML response
     return HttpResponse('<h1>Hello ᓚᘏᗢ</h1>')
 def about(request):
-    # Send a simple HTML response
-    return HttpResponse('<h1>About the CatScatCollector</h1>')
-
+    return render(request, 'about.html')
