@@ -1,26 +1,26 @@
 from django.shortcuts import render
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView
+from .models import Cat
 
 def home(request):
     return render(request, 'home.html')
+
 def about(request):
     return render(request, 'about.html')
 
-class Cat:
-    def __init__(self, name, breed, description, age):
-        self.name = name
-        self.breed = breed
-        self.description = description
-        self.age = age
+def cats_index(request):
+    cats = Cat.objects.all()
+    return render(request, 'cats/index.html', {
+        'cats': cats
+    })
 
-# Create a list of Cat instances
-cats = [
-    Cat('Lolo', 'tabby', 'Kinda rude.', 3),
-    Cat('Sachi', 'tortoiseshell', 'Looks like a turtle.', 0),
-    Cat('Fancy', 'bombay', 'Happy fluff ball.', 4),
-    Cat('Bonk', 'selkirk rex', 'Meows loudly.', 6)
-]
-# views.py
+def cat_detail(request, cat_id):
+    cat = Cat.objects.get(id=cat_id)
+    return render(request, 'cats/detail.html', {
+        'cat': cat
+    })
 
-def cat_index(request):
-    # Render the cats/index.html template with the cats data
-    return render(request, 'cats/index.html', {'cats': cats})
+class CatCreate(CreateView):
+    model = Cat
+    fields = '__all__'
