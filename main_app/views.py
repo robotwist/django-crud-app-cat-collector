@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect 
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .models import Cat
+from .models import Cat, Toy
 from .forms import FeedingForm
 
 def home(request):
@@ -36,8 +36,6 @@ def add_feeding(request, cat_id):
     return redirect('cat_detail', cat_id=cat_id)
 
 
-
-
 class CatCreate(CreateView):
     model = Cat
     fields = '__all__'
@@ -49,3 +47,9 @@ class CatUpdate(UpdateView):
 class CatDelete(DeleteView):
     model = Cat
     success_url = '/cats/'
+    
+class ToyCreate(CreateView):
+    model = Toy
+    fields = '__all__'
+
+

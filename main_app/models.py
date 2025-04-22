@@ -31,3 +31,14 @@ class Feeding(models.Model):
     def get_absolute_url(self):
         return reverse('cat_detail', kwargs={'cat_id': self.id})
     
+    # Add the Toy model
+class Toy(models.Model):
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('toy-detail', kwargs={'pk': self.id})
+
