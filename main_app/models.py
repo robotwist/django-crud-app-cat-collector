@@ -13,6 +13,10 @@ class Cat(models.Model):
     description = models.TextField()
     age = models.IntegerField()
 
+    def get_absolute_url(self):
+        return reverse('cat-detail', kwargs={'cat_id': self.id})
+    
+
 class Feeding(models.Model):
     date = models.DateField('Feeding Date')
     meal = models.CharField(
@@ -27,9 +31,6 @@ class Feeding(models.Model):
     
     class Meta:
         ordering = ['-date']
-    
-    def get_absolute_url(self):
-        return reverse('cat_detail', kwargs={'cat_id': self.id})
     
     # Add the Toy model
 class Toy(models.Model):

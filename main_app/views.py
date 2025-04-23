@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect 
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import Cat, Toy
 from .forms import FeedingForm
@@ -41,7 +41,7 @@ class CatCreate(CreateView):
     fields = '__all__'
 class CatUpdate(UpdateView):
     model = Cat
-    # Let's disallow the renaming of a cat by excluding the name field!
+    # Disallow renaming of cat by excluding name field!
     fields = ['breed', 'description', 'age']
 
 class CatDelete(DeleteView):
@@ -51,5 +51,16 @@ class CatDelete(DeleteView):
 class ToyCreate(CreateView):
     model = Toy
     fields = '__all__'
+class ToyList(ListView):
+    model = Toy
 
+class ToyDetail(DetailView):
+    model = Toy
+class ToyUpdate(UpdateView):
+    model = Toy
+    fields = ['name', 'color']
+
+class ToyDelete(DeleteView):
+    model = Toy
+    success_url = '/toys/'
 
