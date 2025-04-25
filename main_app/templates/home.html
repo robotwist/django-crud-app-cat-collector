@@ -26,8 +26,12 @@
     <input type="hidden" name="next" value="{{ next }}" />
     <button type="submit" class="btn submit">Login</button>
   </form>
-  <div>
+  <div class="auth-options">
     <p>New to Cat Collector? <a href="{% url 'signup' %}">Sign Up</a></p>
+    <p>Or login with:</p>
+    <a href="{% url 'social:begin' 'github' %}" class="btn github">
+      Login with GitHub
+    </a>
   </div>
 </section>
 {% endif %}
